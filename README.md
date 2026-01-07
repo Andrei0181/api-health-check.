@@ -1,38 +1,52 @@
-# api-health-check.
-Python script for API health checks, latency measurement and error handling
-import requests
-import time
+# API Health Check
 
-API_URL = "https://api.github.com"
-TIMEOUT = 10
+Simple Python script for API health checks, latency measurement and basic error handling.
 
+## Features
+- Checks API availability (HTTP status)
+- Measures response latency
+- Handles timeouts and errors
+- Returns structured results
 
-def check_api_health():
-    start = time.time()
-    try:
-        response = requests.get(API_URL, timeout=TIMEOUT)
-        latency = time.time() - start
+## Requirements
+- Python 3.8+
+- requests
 
-        if response.status_code == 200:
-            return {
-                "status": "OK",
-                "latency": round(latency, 3),
-                "rate_limit": response.headers.get("X-RateLimit-Remaining")
-            }
-        else:
-            return {
-                "status": f"HTTP_{response.status_code}",
-                "latency": round(latency, 3)
-            }
+## Installation
+```bash
+pip install requests
+python check_api_health.py
+{
+  "status": "OK",
+  "latency": 0.245,
+  "rate_limit": "4999"
+}
 
-    except requests.exceptions.Timeout:
-        return {"status": "TIMEOUT"}
-    except Exception as e:
-        return {"status": "ERROR", "error": str(e)}
+⚠️ **Важно:** файл с кодом должен называться  
+`check_api_health.py`
 
+---
 
-if __name__ == "__main__":
-    result = check_api_health()
-    print("API Health Check Result:")
-    for k, v in result.items():
-        print(f"{k}: {v}")
+### 4️⃣ НИЖЕ — Commit changes
+Внизу страницы:
+
+- Commit message:  
+  **Update README**
+- Ничего больше не трогай
+- Нажми **Commit changes**
+
+---
+
+## ✅ После этого у тебя будет:
+- аккуратный README
+- понятный проект
+- +100 к виду профиля GitHub
+
+---
+
+### Напиши, когда сделал:
+👉 **«README готов»**
+
+Дальше:
+- наведём порядок в коде
+- сделаем второй проект (ещё +1 в портфолио) 💪
